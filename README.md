@@ -1,7 +1,7 @@
-# Prisma SD-WAN ION Rebooting (Preview)
-The purpose of this script is to rebooting an ION elemeent
+# Prisma SD-WAN ION Rebooting (Preview - use at own risk)
+The purpose of this script is to reboot an ION elemeent
 
-If you use the name "ALL-IONS" it will reboot all IONs. 
+If you use the name "ALL-IONS" it will reboot all IONs so be careful. 
 
 #### License
 MIT
@@ -34,4 +34,3 @@ MIT
 
 #### For more info
  * Get help and additional Prisma SD-WAN Documentation at <https://docs.paloaltonetworks.com/prisma/cloudgenix-sd-wan.html>
-PrismaAccess2023
