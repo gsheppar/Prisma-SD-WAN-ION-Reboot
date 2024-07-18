@@ -1,8 +1,6 @@
 # Prisma SD-WAN ION Rebooting (Preview - use at own risk)
 The purpose of this script is to reboot an ION elemeent
 
-If you use the name "ALL-IONS" it will reboot all IONs so be careful. 
-
 #### License
 MIT
 
@@ -20,8 +18,8 @@ MIT
 
  1. ./reboot.py --name Branch-Site-1-ION1
       - Will reboot the ION named Branch-Site-1-ION1
- 2. ./reboot.py --name ALL-IONS
-      - Will reboot all IONs so be careful 
+ 2. ./reboot.py --name -H 10
+      - Will reboot device in 10 hours
 
 ### Caveats and known issues:
  - This is a PREVIEW release, hiccups to be expected. Please file issues on Github for any problems.

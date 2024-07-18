@@ -7,6 +7,7 @@ import sys
 import logging
 import os
 import datetime
+import time
 from datetime import datetime, timedelta
 import sys
 
@@ -41,9 +42,14 @@ except ImportError:
 
 def reboot(cgx, element_name) : 
     
+    count_down = 10
+    while count_down != 0:
+        print("Device will reboot in: " + str(count_down) + " seconds")
+        count_down -= 1
+        time.sleep(1)
 
     for element in cgx.get.elements().cgx_content['items']:
-        if element["name"] == element_name or element_name == "ALL-IONS":
+        if element["name"] == element_name:
             data = {"action":"reboot","parameters":None}
             resp = cgx.post.tenant_element_operations(element_id=element["id"],data=data)
             if not resp:
@@ -66,6 +72,7 @@ def go():
     # Allow Controller modification and debug level sets.
     config_group = parser.add_argument_group('Name', 'These options change how the configuration is loaded.')
     config_group.add_argument("--name", "-N", help="Element Name", required=True, default=None)
+    config_group.add_argument("--hours", "-H", help="How many hours", required=False, default=None)
     controller_group = parser.add_argument_group('API', 'These options change how this program connects to the API.')
     controller_group.add_argument("--controller", "-C",
                                   help="Controller URI, ex. "
@@ -127,8 +134,26 @@ def go():
     cgx = cgx_session
     
     element_name = args["name"]
+    hours = args["hours"]
     
-    reboot(cgx, element_name) 
+    element_found = False
+    for element in cgx.get.elements().cgx_content['items']:
+        if element["name"] == element_name:
+            element_found = True
+            
+    if not element_found:
+        print("Element not found.")
+        sys.exit()
+    
+    if hours:
+        time_wait = int(hours)
+        while time_wait != 0:
+            print("Waiting " + str(time_wait) + " hours before rebooting " + ". Will report back in 1 hour!!")
+            time.sleep(3600)
+            time_wait -= 1
+        reboot(cgx, element_name)
+    else:
+        reboot(cgx, element_name) 
     # end of script, run logout to clear session.
     print("End of script. Logout!")
     cgx_session.get.logout()
