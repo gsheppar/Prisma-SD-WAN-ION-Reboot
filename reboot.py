@@ -2,19 +2,13 @@
 import cloudgenix
 import argparse
 from cloudgenix import jd, jd_detailed, jdout
-import yaml
 import cloudgenix_settings
 import sys
 import logging
-import ipcalc
-import ipaddress
 import os
 import datetime
 from datetime import datetime, timedelta
-import dateutil
-from dateutil.relativedelta import relativedelta
 import sys
-import csv
 
 
 # Global Vars
@@ -47,7 +41,6 @@ except ImportError:
 
 def reboot(cgx, element_name) : 
     
-    element_found = False
 
     for element in cgx.get.elements().cgx_content['items']:
         if element["name"] == element_name or element_name == "ALL-IONS":
