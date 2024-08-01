@@ -18,7 +18,7 @@ MIT
 
  1. ./reboot.py --name Branch-Site-1-ION1
       - Will reboot the ION named Branch-Site-1-ION1
- 2. ./reboot.py --name -H 10
+ 2. ./reboot.py --name Branch-Site-1-ION1 -H 10
       - Will reboot device in 10 hours
 
 ### Caveats and known issues:
